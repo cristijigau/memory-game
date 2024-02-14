@@ -1,0 +1,22 @@
+.card {
+  background: red;
+  width: 9em;
+  height: 9em;
+  border-radius: 1em;
+}
+
+.card.initial img {
+  visibility: hidden;
+}
+
+.card.flipped img {
+  visibility: visible;
+}
+
+.card.matched {
+  visibility: visible;
+}
+
+.card.mismatched img {
+  visibility: visible;
+}
