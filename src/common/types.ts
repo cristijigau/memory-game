@@ -15,3 +15,8 @@ export type ImageData = {
 export type CardItem = ImageData & {
   status: CardStatus;
 };
+
+export type Player = {
+  name: string;
+  score: number;
+};

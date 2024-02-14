@@ -1,9 +1,4 @@
-import { CardItem, CardStatus } from '../../common/types';
-
-export type Player = {
-  name: string;
-  score: number;
-};
+import { CardItem, CardStatus, Player } from '../../common/types';
 
 export type GameState = {
   cards: CardItem[];

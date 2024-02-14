@@ -1,10 +1,12 @@
 import { useContext, useEffect } from 'react';
 import { CardItem, CardStatus } from '../../common/types';
-import './index.css';
 import { GameStateContext } from '../../contexts/GameStateContext';
 import useFetchCatImages from '../../hooks/useFetchCatImages';
 import { prepareCardData } from '../../common/helpers';
-import Card from '../Card';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import { CardTableContainer } from './styled';
+import FlipCard from '../FlipCard';
 
 const CardTable = () => {
   const {
@@ -119,20 +121,31 @@ const CardTable = () => {
   };
 
   return (
-    <div className="card-table" style={{}}>
+    <CardTableContainer>
       {isFetchingImages && <p>Loading...</p>}
       {errorFetchingImages && <p>Oops, an error ocurred. Try refreshing.</p>}
       {!isFetchingImages &&
         !errorFetchingImages &&
         cards.map((card) => (
-          <Card
-            item={card}
+          <FlipCard
             key={card.id}
-            status={card.status}
+            cardId={card.id}
+            isFlipped={card.status !== CardStatus.Initial}
+            frontItem={<Card sx={{ height: '100%' }} />}
+            backItem={
+              <Card sx={{ height: '100%' }}>
+                <CardMedia
+                  component="img"
+                  alt="cat"
+                  image={card.url}
+                  height="100%"
+                />
+              </Card>
+            }
             handleClickCard={handleClickCard}
           />
         ))}
-    </div>
+    </CardTableContainer>
   );
 };
 
