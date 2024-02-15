@@ -1,17 +1,11 @@
-import { useContext } from 'react';
-import Settings from '../Settings';
-import { GameStateContext } from '../../contexts/GameStateContext';
+import { StyledBox } from './styled';
+import CurrentPlayer from '../CurrentPlayer';
 
 const GameAppBar = () => {
-  const { currentPlayer, players } = useContext(GameStateContext);
-
-  const currentPlayerName = players[currentPlayer - 1]?.name;
-
   return (
-    <div style={{ width: '100%' }}>
-      <Settings />
-      Current Player: {currentPlayerName} <br />
-    </div>
+    <StyledBox>
+      <CurrentPlayer />
+    </StyledBox>
   );
 };
 

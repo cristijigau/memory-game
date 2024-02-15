@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { ImageData } from '../common/types';
 
-const useFetchCatImages = () => {
-  const [images, setImages] = useState<ImageData[]>([]);
+const useFetchData = <ReturnType>(url: string, refetchTrigger: boolean) => {
+  const [data, setData] = useState<ReturnType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -11,18 +10,17 @@ const useFetchCatImages = () => {
 
     const fetchCatImages = async () => {
       try {
-        const response = await fetch(
-          'https://api.thecatapi.com/v1/images/search?limit=10',
-        );
+        console.log('fetching');
+        const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error('Failed to fetch images');
+          throw new Error('Failed to fetch data');
         }
 
-        const images = (await response.json()) as ImageData[];
+        const data = (await response.json()) as ReturnType;
 
         if (!ignore) {
-          setImages(images);
+          setData(data);
         }
       } catch (error) {
         setError(error as Error);
@@ -36,13 +34,13 @@ const useFetchCatImages = () => {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [url, refetchTrigger]);
 
   return {
-    images,
+    data,
     loading,
     error,
   };
 };
 
-export default useFetchCatImages;
+export default useFetchData;

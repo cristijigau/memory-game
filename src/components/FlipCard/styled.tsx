@@ -15,6 +15,7 @@ export const FlipCardContainer = styled(Box)<BoxProps>(() => ({
 export const FlipCardInner = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isFlipped',
 })<FlipCardInnerProps>(({ isFlipped }) => ({
+  cursor: 'pointer',
   position: 'relative',
   width: '100%',
   height: '100%',

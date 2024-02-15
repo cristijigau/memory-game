@@ -19,4 +19,5 @@ export type CardItem = ImageData & {
 export type Player = {
   name: string;
   score: number;
+  color: string;
 };

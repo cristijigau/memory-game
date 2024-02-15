@@ -1,31 +1,28 @@
 import { ChangeEvent, useContext, useState } from 'react';
 import { GameStateContext } from '../../contexts/GameStateContext';
-import { Button, Modal, Paper, TextField, Typography } from '@mui/material';
-import { ActionSection, FormContainer, ModalContentBox } from './styled';
+import { Box, Button, InputAdornment, Modal, Typography } from '@mui/material';
+import {
+  ActionSection,
+  FormContainer,
+  ModalContentBox,
+  NameInput,
+  PlayerNumberButtons,
+} from './styled';
 import { CardStatus, Player } from '../../common/types';
+import { NAME_INPUT_LABELS, PLAYER_NUMBER_BUTTONS } from './constants';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import { DISPLAY_ALL_CARDS_TIMEOUT } from '../../common/constants';
+import { stringToColor } from '../../common/helpers';
 
 const Settings = () => {
-  const { cards, updateAllStatuses, updateIsGameStarted } =
+  const { cards, isGameStarted, updateAllStatuses, updateIsGameStarted } =
     useContext(GameStateContext);
 
   const [numberOfPlayers, setNumPlayers] = useState<number>(1);
   const [playerNames, setPlayerNames] = useState<string[]>(['']);
   const { updatePlayers } = useContext(GameStateContext);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(true);
 
-  const nameInputLabels = [
-    'First player name',
-    'Second player name',
-    'Third player name',
-  ];
-
-  const handlePlayersNumChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const playersNumber = Number(e.target.value);
-
-    if (playersNumber < 1 || playersNumber > 3) {
-      return;
-    }
-
+  const handlePlayersNumChange = (playersNumber: number) => {
     setNumPlayers(playersNumber);
     setPlayerNames(new Array(playersNumber).fill(''));
   };
@@ -44,12 +41,12 @@ const Settings = () => {
       return;
     }
 
+    updateIsGameStarted(true);
     updateAllStatuses(cards, CardStatus.Flipped);
 
     setTimeout(() => {
       updateAllStatuses(cards, CardStatus.Initial);
-      updateIsGameStarted(true);
-    }, 3000);
+    }, DISPLAY_ALL_CARDS_TIMEOUT);
   };
 
   const handleSubmit = () => {
@@ -57,58 +54,80 @@ const Settings = () => {
       const players = playerNames.map((playerName) => ({
         name: playerName,
         score: 0,
+        color: stringToColor(playerName),
       }));
 
       updatePlayers(players);
-      setIsSettingsOpen(false);
       handleStartGame(players);
     }
   };
 
   return (
     <Modal
-      open={isSettingsOpen}
-      onClose={() => {}}
+      open={!isGameStarted}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
       <ModalContentBox>
-        <Paper>
-          <FormContainer>
+        <FormContainer>
+          <Box>
+            <Typography align="center" variant="h4" color="primary">
+              😺
+            </Typography>
             <Typography
               align="center"
               variant="h6"
               gutterBottom
               color="primary"
             >
-              Game Settings
+              MemoMeow
             </Typography>
-            <TextField
-              id="payer-number-input"
-              label="Number of players"
-              type="number"
+          </Box>
+
+          <Box>
+            <PlayerNumberButtons
+              size="small"
+              aria-label="Player number buttons"
+              variant="contained"
+            >
+              {PLAYER_NUMBER_BUTTONS.map((buttonName, index) => (
+                <Button
+                  color={numberOfPlayers - 1 === index ? 'success' : 'primary'}
+                  key={buttonName}
+                  onClick={() => handlePlayersNumChange(index + 1)}
+                >
+                  {buttonName}
+                </Button>
+              ))}
+            </PlayerNumberButtons>
+          </Box>
+          {playerNames.map((name, index) => (
+            <NameInput
+              key={index}
+              id="name-input"
+              autoComplete="off"
+              size="small"
+              label={
+                numberOfPlayers - 1 ? NAME_INPUT_LABELS[index] : 'Player Name'
+              }
               variant="outlined"
-              value={numberOfPlayers}
-              onChange={handlePlayersNumChange}
-              inputProps={{ input: { min: 0, max: 3 } }}
+              value={name}
+              onChange={(e) => handleNameChange(e, index)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle color="primary" />
+                  </InputAdornment>
+                ),
+              }}
             />
-            {playerNames.map((name, index) => (
-              <TextField
-                key={index}
-                id="name-input"
-                label={nameInputLabels[index]}
-                variant="outlined"
-                value={name}
-                onChange={(e) => handleNameChange(e, index)}
-              />
-            ))}
-            <ActionSection>
-              <Button variant="contained" fullWidth onClick={handleSubmit}>
-                Start Game
-              </Button>
-            </ActionSection>
-          </FormContainer>
-        </Paper>
+          ))}
+          <ActionSection>
+            <Button variant="contained" onClick={handleSubmit} fullWidth>
+              Start Game
+            </Button>
+          </ActionSection>
+        </FormContainer>
       </ModalContentBox>
     </Modal>
   );
