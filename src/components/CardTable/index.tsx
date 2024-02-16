@@ -106,7 +106,10 @@ const CardTable = () => {
   const handleClickCard = (clickedCardId: string, clickedCardURL: string) => {
     const { flippedCards, mismatchedCards } =
       getFlippedAndMismatchedCards(cards);
-    const shouldFlip = flippedCards.length <= 1 && !mismatchedCards.length;
+    const shouldFlip =
+      flippedCards.length <= 1 &&
+      !mismatchedCards.length &&
+      flippedCards[0]?.id !== clickedCardId;
 
     if (!isGameStarted || !shouldFlip) {
       return;

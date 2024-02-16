@@ -10,7 +10,6 @@ const useFetchData = <ReturnType>(url: string, refetchTrigger: boolean) => {
 
     const fetchCatImages = async () => {
       try {
-        console.log('fetching');
         const response = await fetch(url);
 
         if (!response.ok) {
