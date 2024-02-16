@@ -19,9 +19,8 @@ export const ResultsContainer = styled(Box)<BoxProps>(({ theme }) => ({
   padding: theme.spacing(3),
   minWidth: '40vw',
   minHeight: '50vh',
-  backgroundColor: 'rgba(255, 255, 255, 0.48)',
+  backgroundColor: 'rgba(255, 255, 255, 1)',
   borderRadius: '12px',
-  backdropFilter: 'blur(2px)',
   border: ' 1px solid rgba(255, 255, 255, 0.11)',
 }));
 

@@ -1,11 +1,14 @@
 import { GameStateProvider } from './contexts/GameStateContext';
 import GameLayout from './components/GameLayout';
+import CustomThemeProvider from './theme/CustomThemeProvider';
 
 function App() {
   return (
-    <GameStateProvider>
-      <GameLayout />
-    </GameStateProvider>
+    <CustomThemeProvider>
+      <GameStateProvider>
+        <GameLayout />
+      </GameStateProvider>
+    </CustomThemeProvider>
   );
 }
 

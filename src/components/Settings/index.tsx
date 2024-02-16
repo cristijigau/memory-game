@@ -92,7 +92,9 @@ const Settings = () => {
             >
               {PLAYER_NUMBER_BUTTONS.map((buttonName, index) => (
                 <Button
-                  color={numberOfPlayers - 1 === index ? 'success' : 'primary'}
+                  color={
+                    numberOfPlayers - 1 === index ? 'secondary' : 'primary'
+                  }
                   key={buttonName}
                   onClick={() => handlePlayersNumChange(index + 1)}
                 >

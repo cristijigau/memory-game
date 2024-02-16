@@ -4,5 +4,5 @@ export const CAT_IMAGES_URL =
 export const IMAGE_FETCH_ERROR_MESSAGE =
   'Something went wrong while fetching cat images. Please refresh the page to try again';
 
-export const RESULT_DISPLAY_TIMEOUT = 2000;
+export const RESULT_DISPLAY_TIMEOUT = 1000;
 export const DISPLAY_ALL_CARDS_TIMEOUT = 3000;

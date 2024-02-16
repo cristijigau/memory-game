@@ -19,7 +19,7 @@ export const FormContainer = styled(Box)<BoxProps>(({ theme }) => ({
   padding: theme.spacing(2),
   minHeight: '60vh',
   minWidth: '24vw',
-  backgroundColor: 'rgba(255, 255, 255, 0.48)',
+  backgroundColor: 'rgba(255, 255, 255, 1)',
   borderRadius: '12px',
   backdropFilter: 'blur(2px)',
   border: ' 1px solid rgba(255, 255, 255, 0.11)',

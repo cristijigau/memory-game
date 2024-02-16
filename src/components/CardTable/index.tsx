@@ -21,6 +21,7 @@ import {
   RESULT_DISPLAY_TIMEOUT,
 } from '../../common/constants';
 import useFetchData from '../../hooks/useFetchData';
+import planableLogo from '../../assets/planable.png';
 
 const CardTable = () => {
   const {
@@ -141,11 +142,19 @@ const CardTable = () => {
               isFlipped={card.status !== CardStatus.Initial}
               frontItem={
                 <CardFrontFace
+                  raised={true}
                   onClick={() => handleClickCard(card.id, card.url)}
-                />
+                >
+                  <CardMedia
+                    component="img"
+                    alt="cat"
+                    image={planableLogo}
+                    height="100%"
+                  />
+                </CardFrontFace>
               }
               backItem={
-                <CardBackFace>
+                <CardBackFace raised={true} status={card.status}>
                   <CardMedia
                     component="img"
                     alt="cat"
