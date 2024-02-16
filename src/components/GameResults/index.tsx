@@ -7,8 +7,9 @@ import {
   ListItemText,
   Modal,
 } from '@mui/material';
-import { ResultsContainer, ModalContentBox, ResultsList } from './styled';
 import { useContext } from 'react';
+
+import { ResultsContainer, ModalContentBox, ResultsList } from './styled';
 import { GameStateContext } from '../../contexts/GameStateContext';
 import { CardStatus } from '../../common/types';
 

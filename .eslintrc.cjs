@@ -16,8 +16,27 @@ module.exports = {
   },
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'react', 'react-hooks', 'jsx-a11y', 'prettier'],
+  plugins: [
+    'react-refresh',
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+    'prettier',
+    'import',
+  ],
   rules: {
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          ['parent', 'sibling', 'index'],
+        ],
+        'newlines-between': 'always',
+      },
+    ],
     'prettier/prettier': [
       'error',
       {

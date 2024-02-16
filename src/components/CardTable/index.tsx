@@ -1,11 +1,13 @@
 import { useContext, useEffect } from 'react';
+import CardMedia from '@mui/material/CardMedia';
+import { CircularProgress } from '@mui/material';
+
 import { CardItem, CardStatus, ImageData } from '../../common/types';
 import { GameStateContext } from '../../contexts/GameStateContext';
 import {
   getFlippedAndMismatchedCards,
   prepareCardData,
 } from '../../common/helpers';
-import CardMedia from '@mui/material/CardMedia';
 import {
   CardBackFace,
   CardFrontFace,
@@ -13,7 +15,6 @@ import {
   CardTableGrid,
 } from './styled';
 import FlipCard from '../FlipCard';
-import { CircularProgress } from '@mui/material';
 import ErrorCard from '../ErrorCard';
 import {
   CAT_IMAGES_URL,

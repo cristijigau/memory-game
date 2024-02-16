@@ -1,6 +1,7 @@
 import Card, { CardProps } from '@mui/material/Card';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
+
 import { CardStatus } from '../../common/types';
 
 type CardBackFaceProps = CardProps & {

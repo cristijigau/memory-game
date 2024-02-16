@@ -1,9 +1,10 @@
 import { Avatar, Box } from '@mui/material';
 import { useContext } from 'react';
-import { GameStateContext } from '../../contexts/GameStateContext';
-import { ActiveBadge, CurrentPlayerContainer, InactiveBadge } from './styled';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import CloudIcon from '@mui/icons-material/Cloud';
+
+import { GameStateContext } from '../../contexts/GameStateContext';
+import { ActiveBadge, CurrentPlayerContainer, InactiveBadge } from './styled';
 
 const CurrentPlayer = () => {
   const { players, currentPlayer } = useContext(GameStateContext);

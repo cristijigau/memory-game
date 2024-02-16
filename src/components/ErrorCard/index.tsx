@@ -1,6 +1,7 @@
 import { Card, CardContent, Stack, Typography } from '@mui/material';
-import { ErrorCardProps } from './types';
 import ErrorIcon from '@mui/icons-material/Error';
+
+import { ErrorCardProps } from './types';
 
 const ErrorCard = ({ message }: ErrorCardProps) => {
   return (

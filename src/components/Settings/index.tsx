@@ -1,6 +1,8 @@
 import { ChangeEvent, useContext, useState } from 'react';
-import { GameStateContext } from '../../contexts/GameStateContext';
 import { Box, Button, InputAdornment, Modal, Typography } from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+
+import { GameStateContext } from '../../contexts/GameStateContext';
 import {
   ActionSection,
   FormContainer,
@@ -10,7 +12,6 @@ import {
 } from './styled';
 import { CardStatus, Player } from '../../common/types';
 import { NAME_INPUT_LABELS, PLAYER_NUMBER_BUTTONS } from './constants';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import { DISPLAY_ALL_CARDS_TIMEOUT } from '../../common/constants';
 import { stringToColor } from '../../common/helpers';
 
