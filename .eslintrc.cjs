@@ -18,7 +18,12 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'react', 'react-hooks', 'jsx-a11y', 'prettier'],
   rules: {
-    // 'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
