@@ -34,6 +34,38 @@ The app utilizes both a main application-wide state and local component states. 
 
 I chose React Context instead of Redux for this project because Redux is typically used in larger projects with complex global state management involving multiple slices and reducers. Since my app is small and doesn't have a complex global state or many actions triggering state changes, I found React Context to be sufficient for managing state without the added complexity of Redux.
 
+## Components:
+- _App Component_: Responsible for rendering the main layout component GameLayout and provides context providers for global state management and custom theming.
+- _GameLayout Component_: the main layout component.
+- _CardTable Component_: Renders the grid of memory cards for the game. It encapsulates the logic for rendering cards and handling user interactions.
+- _CurrentPlayer Component_: Displays information about the current player.
+- _ErrorCard Component_: Renders an error message when an error occurs during data fetching or processing.
+- _FlipCard Component_: Represents an individual memory card. It handles card flips and displays the image fetched from the external API.
+- _GameAppBar Component_: Is intended to render the app bar with game controls and settings. Currently it only displays the current user info.
+- _GameResults Component_: Displays the results of the game, including the final score for each player.
+- _Settings Component_: Should provide user settings and configurations for the game. Currently it only allows to select the number of players and enter their names.
+
+## Contexts
+
+### GameStateContext
+Manages the global state of the game.
+
+## Hooks
+
+### useFetchData
+A custom hook for fetching data from external APIs.
+
+## Theme
+
+### CustomThemeProvider
+Provides a custom theme for the application which should include colors and styling variables. Currently it only includes colors.
+
+## Common Utilities
+
+- `constants.ts`: Contains common constants used throughout the application.
+- `helpers.ts`: Provides helper functions for tasks such as data manipulation.
+- `types.ts`: Defines types and interfaces used across the application.
+
 ## Known limitations:
 
 ### Browser Compatibility: 
